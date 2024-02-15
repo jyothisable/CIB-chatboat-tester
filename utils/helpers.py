@@ -82,8 +82,6 @@ def do_some_random_activity(shadow_root,driver):
     # Click on home page button
     driver.find_element(By.XPATH,'/html/body/form/div[3]/div[1]/div[4]/ul/li[2]/a/div/span[2]').click() # shadow_root expires on refresh
     time.sleep(5)
-    # Perform the action
-    actions.perform()
     
     # new shadow root created
     new_shadow_root = initialize_chatbot(driver)
@@ -102,11 +100,13 @@ def batch_prompt(driver,shadow_root,df,LIMIT,Logs_status):
     sup = ['st','nd','rd']
     for i in range(len(df)):
         df['Response'].iloc[i] = get_response(shadow_root,df['Prompts'].iloc[i])
-        if i%LIMIT == 0:
+        
+        # Session timeout and log saving logic
+        if i%LIMIT == 0 and i !=0:
             if Logs_status== True:
                 clean_and_save(df,'logs/reverse.csv') 
-                n = i//LIMIT+1
-                s = sup[n] if n < 4 else 'th'
+                n = i//LIMIT
+                s = sup[n-1] if n < 4 else 'th'
                 print(f"{n}{s} batch completed. Logs saved to '/logs' folder")
                 
             shadow_root = do_some_random_activity(shadow_root,driver)
