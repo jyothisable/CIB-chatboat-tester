@@ -101,7 +101,7 @@ def do_some_random_activity(shadow_root,driver):
     print('Session timeout extended successfully')
     
 
-def batch_prompt(driver,shadow_root,df,LIMIT):
+def batch_prompt(driver,shadow_root,df,LIMIT,Logs_status):
     print('Initiating Prompt Engine')
     
     df['Response'] = None
@@ -109,11 +109,10 @@ def batch_prompt(driver,shadow_root,df,LIMIT):
     for i in range(len(df)):
         df['Response'].iloc[i] = get_response(shadow_root,df['Prompts'].iloc[i])
         if i%LIMIT == 0:
-            
-            clean_and_save(df,'logs/reverse.csv')
-            
-            print(f"{i//LIMIT+1}th batch completed. Logs saved to '/logs' folder")
-            
+            if Logs_status== True:
+                clean_and_save(df,'logs/reverse.csv') 
+                print(f"{i//LIMIT+1}th batch completed. Logs saved to '/logs' folder")
+                
             do_some_random_activity(shadow_root,driver)
 
 def clean_and_save(df,filename):
