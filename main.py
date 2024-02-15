@@ -59,9 +59,13 @@ time.sleep(2)
 
 # Find send button
 shadow_root.find_element(By.CSS_SELECTOR, 'div.chat-window > div.chat-footer > img.chat-send-button').click()
-time.sleep(2)
+time.sleep(5)
 
-time.sleep(2)
+# Find the response
+response = shadow_root.find_element(By.CSS_SELECTOR, 'div.chat-window > div.chat-messages > div > div:last-child')
+print(response)
+
+
 
 
 
