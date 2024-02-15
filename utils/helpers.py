@@ -102,7 +102,7 @@ def do_some_random_activity(shadow_root,driver):
     
 
 def batch_prompt(driver,shadow_root,df,LIMIT,Logs_status):
-    print('Initiating Prompt Engine')
+    print('Initiating Prompt Engine ...')
     
     df['Response'] = None
     # Split the prompts to limit columns such that response can be saved to csv file in between
