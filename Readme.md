@@ -1,10 +1,14 @@
 # Chatbot automation testing using selenium for a Corporate Internet Banking website
 This is my first project using selenium for automation of website testing
 
-This script is configured to run on ICICI Bank CIB website (as of the last date of update).
+This script is configured to run on ICICI Bank CIB website.
+
+Please note that this may not properly working in future if XPath or CSS selector gets changed.
 
 ## Features
 Using this python application you can test any number of prompts using a csv file as input. A reverse file will be generated will corresponding responses (single / multiple) mapped along the same records.
+
+Session timeout is extended by random auto clicks
 
 ## Getting started
 ### Prerequisites
@@ -38,3 +42,5 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 This was a late night one day project I did for testing couple of (I mean a huge list of) prompts I wanted to test and see if AI powered chatbot in the internet banking website is working properly or not.
 
 Feel free to fork and reach out for support if needed.
+
+Please note that this may not properly working in future if XPath or CSS selector gets changed.
