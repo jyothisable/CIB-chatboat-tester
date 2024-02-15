@@ -1,0 +1,12 @@
+Prompts,Response
+account statement of last 6  months,Did you mean any of the following?#How can I download my bank statement for last 6 months?#
+account statement,"Please select from the following.#Detailed Statement
+Consolidated Statement
+Mini Statement#Was I able to answer your question?#👍
+👎#"
+monthly average balance,"Did you mean any of the following?#What is the minimum monthly amount that I need to maintain in my account ?
+What is Quarterly Average Balance charges?#"
+how to setup autopay in bill payments ?,"Sorry, I am not sure if I got that. Could you please rephrase it?#"
+how to check the staus of bill payment ?,"Sorry, I am not sure if I got that. Could you please rephrase it?#"
+Amount debited but not showing in transaction history,"Sorry could not get that. Could you please elaborate more
+Here are few suggestions which might help.#Where can I view my transaction history?#"

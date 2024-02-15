@@ -6,6 +6,9 @@ from selenium.webdriver.common.by import By
 import chromedriver_binary
 import pandas as pd
 from selenium.webdriver.common.action_chains import ActionChains 
+import os.path
+from datetime import datetime
+
 
 driver = webdriver.Chrome()
 
@@ -39,10 +42,6 @@ driver.find_element(By.XPATH,'//*[@id="LoginHDisplay"]/main/div/div[1]/div[1]/di
 
 time.sleep(5)
 
-# set session timeout widget z-index to 1
-session_timeout_widget = driver.find_element(By.CSS_SELECTOR, "overlaySessionAlert")
-driver.execute_script("arguments[0].style.zIndex = '1'", session_timeout_widget)
-
 # Find chatbot button
 shadow_root = driver.find_element(By.CSS_SELECTOR, '#shadow').shadow_root
 
@@ -69,13 +68,55 @@ def get_response(prompt):
 
 # get the list of prompts from csv
 df = pd.read_csv('prompt.csv')
-df['Response'] = df['Prompts'].map(lambda x: get_response(x))
+
+df['Response'] = None
+
+# Split the prompts to limit columns such that response can be saved to csv file in between
+limit = 2
+for i in range(len(df)):
+    df['Response'].iloc[i] = get_response(df['Prompts'].iloc[i])
+    if i%limit == 0:
+        df_limit =df['Response'].str.split('#', expand=True)
+
+        # timestamped log file
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        filename = f'logs/reverse_{timestamp}.csv'
+
+        # Save the DataFrame to the CSV file
+        df.iloc[:i+1].to_csv(filename, index=False)
+
+        print(f"Data saved to {filename}")
+        
+        # do activity to extend the session timeout
+        # click on minimize
+        shadow_root.find_element(By.CSS_SELECTOR, '#minimize').click()
+        
+        # Other activity click
+        # Create an ActionChains object
+        actions = ActionChains(driver)
+
+        # Scroll down by  100 pixels
+        actions.move_to_element(driver.find_element(By.XPATH,'//*[@id="GroupletPanel.SubSection2"]/div[3]/div[1]'))
+        actions.click()
+        actions.send_keys(Keys.PAGE_DOWN)
+        actions.send_keys(Keys.PAGE_UP)
+
+        # Perform the action
+        actions.perform()
+        
+        # click on chat button 
+        shadow_root.find_element(By.CSS_SELECTOR,'div.wrapper-container > button').click()
+        time.sleep(2)
+        
+while os.path.exists(filename):
+    # Append a timestamp to the filename
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    filename = f'my_data_{timestamp}.csv'
+
+# Final actual save
+df.to_csv('reverse.csv', index=False)
 
 
-df2 = pd.concat([df['Prompts'], df['Response'].str.split('#', expand=True)], axis=1)
-
-print(df2)
-df2.to_csv('reverse.csv')
 
 
 
