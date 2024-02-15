@@ -1,4 +1,147 @@
-﻿Prompts,Response_1,Response_2,Response_3
-account statement of last 6  months,,
-account statement,,
-monthly average balance,,
+﻿Prompts
+account statement of last 6  months
+account statement
+monthly average balance
+how to setup autopay in bill payments ?
+how to check the staus of bill payment ?
+Amount debited but not showing in transaction history
+How do I check my account balance?
+What is my current account balance?
+Could you provide my account balance?
+I would like to view my account transaction history
+Can you show me my recent account transactions?
+Please display all transactions in the past month
+How can I transfer money to another account?
+What options do I have to send money to someone?
+How do I set up a payment to another bank account?
+How can I pay my credit card bill through this bank?
+What is the process to pay my visa bill?
+I need to pay my electricity bill
+Can I schedule a future dated transfer?
+How can I set up a repeating transfer on the 5th of every month?
+Is there a way to automate scheduled transfers?
+How do I add a payee for transfers?
+What payees do I have configured already?
+Show my list of saved payees
+How can I cancel a payment if I change my mind?
+What if I entered the wrong amount for a transfer?
+I think I may have put in the wrong account number
+Are there fees for failed or rejected transfers?
+How long do transfers usually take?
+When will the money arrive in the other account?
+How much is the limit for instant transfers?
+What's the maximum amount I can transfer per day?
+How do I update my phone number and email on my profile?
+Can I change my login password?
+What if I forget my password or get locked out?
+How do I add other users to my account?
+Can I set permissions for other users on my account?
+How do I close my account?
+What is the process to deactivate my account?
+Can I reopen a closed account?
+How long do you keep information on closed accounts?
+What security measures do you take to prevent fraud?
+How do you protect customer data?
+Will you ever call me asking for personal info?
+I think I noticed suspicious activity
+I want to check my account balance
+Show me my available account balance
+Please provide the balance for my savings account
+What is the balance on my checking account
+Display the balance on all my accounts
+Provide a list of all my account balances
+Initiate a funds transfer to another bank account
+Setup a payment to an external bank account
+How do I send money to someone at another bank?
+What options do I have to transfer funds to other banks?
+How can I do an interbank electronic funds transfer?
+What methods support transferring money to other banks?
+Show me recent transactions on my account
+Provide account transaction history for the last week
+Can you display 30 days of account transaction reports
+I want to see 1 month of historical transaction details
+Show my account transactions from last month
+Provide the transaction analysis for last 6 months
+How to transfer INR 1000 to mobile number 9876543210
+I want to send Rs. 5000 to this UPI ID sample@sbi
+How to send money to a phone number using UPI payment?
+Can I transfer Rs.2000 to this BHIM UPI ID using my account?
+How to send Rs.500 to someone using just their mobile number?
+What are the various ways to send payments using recipient phone or UPI?
+I want to set up a recurring funds transfer
+How can I schedule repeating payments?
+What options do I have to set up automated transfers?
+Can I do recurring transfers on a set schedule?
+How to setup scheduled transfers on 20th of every month?
+Steps to schedule a repeating payment on the 15th of month?
+Show me pending fund transfer transactions
+Display all my pending or scheduled transactions
+I want to see upcoming scheduled fund transfers
+Show any payments that are not yet processed
+List all pending processing and failed transactions
+Provide a report of all non-completed transfers
+Revert back last funds transfer of Rs. 8000/- done today
+I want to cancel a transfer I just completed
+How can I request reversal for incorrect bank transfer?
+What if I sent money to wrong account?
+Whom do I contact for recalling wrong NEFT money transfer?
+How to cancel an incorrect funds transfer I initiated?
+Show me all my registered payee accounts
+Provide a list of saved payees for transfers
+I want to see the registered beneficiaries with you
+Display names of all my frequesnt transfer recipients
+Who all can I easily send money to on this account?
+List saved payee information for fast transfers
+Display banks I can transfer funds to via NEFT
+Which all banks can I send payments to through IMPS?
+Show the list of supported banks for RTGS money transfers
+What is your coverage for electronic funds transfers?
+I want to check if you allow transfers to small finance banks
+Can I send payments to cooperative banks through you?
+I need to update my email address and phone number
+How can I change my registered contact information?
+Steps to update my mobile number for SMS alerts?
+Procedure to add or change email on my savings account?
+How do I modify my personal details with you?
+I want edit my profile to update my phone and email
+Tell me the limits for different types of transfers
+What are the transaction limits for NEFT versus IMPS?
+How much can I transfer via RTGS in one day?
+Do you have any limits for within bank payments?
+What is the maximum online transfer amount per day?
+Any restrictions on money I can send per transaction?
+I forgot answers to some security questions
+I am unable to reset my password as forgot answers
+How to change security question answers in my profile?
+I need assistance changing my security questions
+Help with resetting DIGIPIN for mobile banking
+How to get my forgotten password or DIGIPIN reset?
+Switch my salary account to your bank
+I want to transfer my payroll to a savings account
+Can I get my salary credited to account in your bank?
+How to setup direct salary credit into account here?
+Steps for setting you as my primary salary account?
+Procedure to add account for monthly salary deposits
+How can I apply for personal loan?
+What are eligibility criteria for home loan?
+I want to apply for loan against property
+What documents needed for education loan?
+Tell me about criteria for availing car finance
+How to check status of my existing loan account?
+I want to redeem reward points
+How to use my unused credit card points?
+Steps to convert credit card points to cash?
+Can I redeem points against travel bookings?
+Want to redeem loyalty points for online shopping
+My credit card has 10000 loyalty points how can I redeem?
+How to register complaint against fraudulent transaction?
+I think someone did unauthorized shopping on my card
+Help! My credit card shows invalid purchases
+I did not do this ATM withdrawal on DD/MM
+I think someone has access to my account credentials
+I suspect these transactions done without my consent
+Deactivate my credit card immediately
+I lost my credit card block it now!
+My card is lost or stolen disable access
+My card was compromised take it off now!
+Urgent help to hotlist my missing credit card

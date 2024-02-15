@@ -39,23 +39,22 @@ driver.find_element(By.XPATH,'//*[@id="LoginHDisplay"]/main/div/div[1]/div[1]/di
 
 time.sleep(5)
 
+# set session timeout widget z-index to 1
+session_timeout_widget = driver.find_element(By.CSS_SELECTOR, "overlaySessionAlert")
+driver.execute_script("arguments[0].style.zIndex = '1'", session_timeout_widget)
+
 # Find chatbot button
 shadow_root = driver.find_element(By.CSS_SELECTOR, '#shadow').shadow_root
 
 shadow_root.find_element(By.CSS_SELECTOR,'div.wrapper-container > button').click()
 time.sleep(2)
 
-
-# get the list of prompts from csv
-df = pd.read_csv('prompt.csv')
-df['Response_1'] = df['Prompts'].map(lambda x: get_response(x))
-
 def get_response(prompt):
     # Find input prompt field
     input_field = shadow_root.find_element(By.CSS_SELECTOR, 'div.chat-window > div.chat-footer > input')
     input_field.send_keys(prompt)
 
-    time.sleep(2)
+    time.sleep(1)
 
     # Find send button
     shadow_root.find_element(By.CSS_SELECTOR, 'div.chat-window > div.chat-footer > img.chat-send-button').click()
@@ -63,17 +62,21 @@ def get_response(prompt):
 
     # Find the response
     responses = shadow_root.find_elements(By.CSS_SELECTOR, 'div.chat-window > div.chat-messages > div > div:last-child > *')
-    res_list = []
-    for res in responses:
-        res_list.apend(res.text)
-    return res_list
+    res_string = ''
+    for idx in range(len(responses)-1):
+        res_string += str(responses[idx].text) + '#'
+    return res_string
+
+# get the list of prompts from csv
+df = pd.read_csv('prompt.csv')
+df['Response'] = df['Prompts'].map(lambda x: get_response(x))
 
 
+df2 = pd.concat([df['Prompts'], df['Response'].str.split('#', expand=True)], axis=1)
 
-# suggestions = shadow_root.find_elements(By.CSS_SELECTOR, 'div.chat-window > div.chat-messages > div > div:last-child  > div.suggestion-chip *')
+print(df2)
+df2.to_csv('reverse.csv')
 
-# for sug in suggestions:
-#     print(sug.text)
 
 
 
