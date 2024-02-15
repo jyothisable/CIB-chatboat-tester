@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 import chromedriver_binary
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains 
+from selenium.webdriver.support import expected_conditions as EC
 import time
 import pandas as pd
 from datetime import datetime
@@ -90,7 +91,9 @@ def do_some_random_activity(shadow_root,driver):
     actions.click()
     actions.send_keys(Keys.PAGE_DOWN)
     actions.send_keys(Keys.PAGE_UP)
-
+    # Click on home page button
+    driver.find_element(By.XPATH,'//*[@id="//*[@id="home"]/a/div/span[2]').click()
+    time.sleep(5)
     # Perform the action
     actions.perform()
     
