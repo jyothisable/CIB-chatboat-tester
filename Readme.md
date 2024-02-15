@@ -1,6 +1,4 @@
 # Chatbot automation testing using selenium for a Corporate Internet Banking website
-This is my first project using selenium for automation of website testing
-
 This script is configured to run on ICICI Bank CIB website.
 
 Please note that this may not properly working in future if XPath or CSS selector gets changed.
