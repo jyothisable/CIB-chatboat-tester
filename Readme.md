@@ -39,6 +39,6 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 ## Acknowledgments
 This was a late night one day project I did for testing couple of (I mean a huge list of) prompts I wanted to test and see if AI powered chatbot in the internet banking website is working properly or not.
 
-Feel free to fork and reach out for support if needed.
+Please note that this may not properly working in future if XPath or CSS selector gets changed in the website, but logic should work.
 
-Please note that this may not properly working in future if XPath or CSS selector gets changed.
+Feel free to fork and reach out for support if needed.
