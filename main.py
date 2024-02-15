@@ -39,5 +39,29 @@ driver.find_element(By.XPATH,'//*[@id="LoginHDisplay"]/main/div/div[1]/div[1]/di
 
 time.sleep(5)
 
+# Find chatbot button
+shadow_root = driver.find_element(By.CSS_SELECTOR, '#shadow').shadow_root
+
+shadow_root.find_element(By.CSS_SELECTOR,'div.wrapper-container > button').click()
+
+# get the list of prompts from csv
+df = pd.read_csv('prompt.csv')
+prompts = df['Prompts'].tolist()
+
+prompt1 = prompts[0]
+
+time.sleep(2)
+# Find input prompt field
+input_field = shadow_root.find_element(By.CSS_SELECTOR, 'div.chat-window > div.chat-footer > input')
+input_field.send_keys(prompt1)
+
+time.sleep(2)
+
+# Find send button
+shadow_root.find_element(By.CSS_SELECTOR, 'div.chat-window > div.chat-footer > img.chat-send-button').click()
+time.sleep(2)
+
+time.sleep(2)
+
 
 
