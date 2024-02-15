@@ -10,7 +10,7 @@ import os.path
 from datetime import datetime
 
 # Constants
-LIMIT = 20 # number of responses until which random activity will be done to keep the session active
+LIMIT = 2 # number of responses until which random activity will be done to keep the session active
 URL ='https://cibnext.icicibank.com/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=ICI'
 
 # Import driver
@@ -116,6 +116,19 @@ def do_some_random_activity():
 # get the list of prompts from csv
 df = pd.read_csv('prompt.csv')
 
+def clean_and_save(filename):
+    '''
+    Concats the prompts and responses and saves it to a csv file with timestamp in the name after cleaning
+    '''
+    df_limit =pd.concat([df['Prompts'],df['Response'].str.split(pat='#',regex=False , expand=True)], axis=1)
+
+    # timestamped log file
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    filename = filename.split('.')[0] + f'_{timestamp}.csv'
+
+    # Save the DataFrame to the CSV file
+    df_limit.to_csv(filename, index=False)
+
 def batch_prompt():
     print('Initiating Prompt Engine')
     
@@ -124,24 +137,17 @@ def batch_prompt():
     for i in range(len(df)):
         df['Response'].iloc[i] = get_response(df['Prompts'].iloc[i])
         if i%LIMIT == 0:
-            df_limit =pd.concat([df['Prompts'],df['Response'].str.split(pat='#',regex=False , expand=True)], axis=1)
-
-            # timestamped log file
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-            filename = f'logs/reverse_{timestamp}.csv'
-
-            # Save the DataFrame to the CSV file
-            df_limit.iloc[:i+1].to_csv(filename, index=False)
-
-            print(f"{i%LIMIT+1}th batch completed. Data saved to {filename}")
+            
+            clean_and_save('logs/reverse.csv')
+            
+            print(f"{i//LIMIT+1}th batch completed. Logs saved to '/logs' folder")
             
             do_some_random_activity()
 
 batch_prompt()
 
 # Final actual save
-df_final = pd.concat([df['Prompts'],df['Response'].str.split(pat='#',regex=False , expand=True)], axis=1)
-df_final.to_csv('reverse.csv', index=False,mode='w')
+clean_and_save('reverse.csv')
 print('Final data saved to reverse.csv')
 
 
