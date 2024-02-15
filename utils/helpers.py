@@ -1,9 +1,6 @@
 
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import chromedriver_binary
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains 
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import pandas as pd
@@ -82,26 +79,19 @@ def do_some_random_activity(shadow_root,driver):
     # click on minimize
     shadow_root.find_element(By.CSS_SELECTOR, '#minimize').click()
     
-    # Other activity click
-    # Create an ActionChains object
-    actions = ActionChains(driver)
-
-    # Scroll down and up by  100 pixels
-    actions.move_to_element(driver.find_element(By.XPATH,'//*[@id="GroupletPanel.SubSection2"]/div[3]/div[1]'))
-    actions.click()
-    actions.send_keys(Keys.PAGE_DOWN)
-    actions.send_keys(Keys.PAGE_UP)
     # Click on home page button
-    driver.find_element(By.XPATH,'//*[@id="//*[@id="home"]/a/div/span[2]').click()
+    driver.find_element(By.XPATH,'/html/body/form/div[3]/div[1]/div[4]/ul/li[2]/a/div/span[2]').click() # shadow_root expires on refresh
     time.sleep(5)
     # Perform the action
     actions.perform()
     
+    # new shadow root created
+    new_shadow_root = initialize_chatbot(driver)
     # click on chat button 
-    shadow_root.find_element(By.CSS_SELECTOR,'div.wrapper-container > button').click()
     time.sleep(2)
     
     print('Session timeout extended successfully')
+    return new_shadow_root
     
 
 def batch_prompt(driver,shadow_root,df,LIMIT,Logs_status):
@@ -116,7 +106,7 @@ def batch_prompt(driver,shadow_root,df,LIMIT,Logs_status):
                 clean_and_save(df,'logs/reverse.csv') 
                 print(f"{i//LIMIT+1}th batch completed. Logs saved to '/logs' folder")
                 
-            do_some_random_activity(shadow_root,driver)
+            shadow_root = do_some_random_activity(shadow_root,driver)
 
 def clean_and_save(df,filename):
     '''
