@@ -19,7 +19,7 @@ driver = login(username, password,URL)
 shadow_root = initialize_chatbot(driver)
 
 # get the list of prompts from csv
-df = pd.read_csv('prompt.csv')
+df = pd.read_csv('prompts.csv')
 
 # Batch prompt the list of prompts
 batch_prompt(driver,shadow_root,df,LIMIT,Logs_status)

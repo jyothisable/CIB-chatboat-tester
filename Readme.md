@@ -18,11 +18,11 @@ List of software and packages required to install and run the project.
 
 ### Installation and usage
 1. Install anaconda 
-2. Replicate the environment using `environment.yml` file
+2. Replicate the environment using `/environment.yml` file
 3. Clone the repository
-4. Input all the prompts to be tested in `Prompt.csv` file
-5. Run the script from `app.py`
-6. Output will be available in the `Response_timestamp.csv` file
+4. Input all the prompts to be tested in `/Prompts.csv` file under `Prompts` header
+5. Run the script from `/app.py`
+6. Output will be available in the `/Response_timestamp.csv` file
 
 #### Configurable Params
 1. `Logs_status = True / False` : To enable / disable data logging the results in between to avoid loss of data
