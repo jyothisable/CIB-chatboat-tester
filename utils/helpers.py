@@ -99,12 +99,15 @@ def batch_prompt(driver,shadow_root,df,LIMIT,Logs_status):
     
     df['Response'] = None
     # Split the prompts to limit columns such that response can be saved to csv file in between
+    sup = ['st','nd','rd']
     for i in range(len(df)):
         df['Response'].iloc[i] = get_response(shadow_root,df['Prompts'].iloc[i])
         if i%LIMIT == 0:
             if Logs_status== True:
                 clean_and_save(df,'logs/reverse.csv') 
-                print(f"{i//LIMIT+1}th batch completed. Logs saved to '/logs' folder")
+                n = i//LIMIT+1
+                s = sup[n] if n < 4 else 'th'
+                print(f"{n}{s} batch completed. Logs saved to '/logs' folder")
                 
             shadow_root = do_some_random_activity(shadow_root,driver)
 
