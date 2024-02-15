@@ -18,7 +18,7 @@ driver.get('https://cibnext.icicibank.com/corp/AuthenticationController?FORMSGRO
 # Wait for the page to load completely
 time.sleep(2)
 
-# Credential import from credentials.txt
+# Credential import from credentials.txt (one line comma separated username and password)
 with open('credentials.txt') as f:
     lines = f.read().split(',')
     username = lines[0]
@@ -76,14 +76,14 @@ limit = 2
 for i in range(len(df)):
     df['Response'].iloc[i] = get_response(df['Prompts'].iloc[i])
     if i%limit == 0:
-        df_limit =df['Response'].str.split('#', expand=True)
+        df_limit =df['Response'].str.split(pat='#',regex=False , expand=True)
 
         # timestamped log file
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         filename = f'logs/reverse_{timestamp}.csv'
 
         # Save the DataFrame to the CSV file
-        df.iloc[:i+1].to_csv(filename, index=False)
+        df_limit.iloc[:i+1].to_csv(filename, index=False)
 
         print(f"Data saved to {filename}")
         
@@ -114,7 +114,8 @@ while os.path.exists(filename):
     filename = f'my_data_{timestamp}.csv'
 
 # Final actual save
-df.to_csv('reverse.csv', index=False)
+df_final = pd.concat([df['Prompts'],df['Response'].str.split(pat='#',regex=False , expand=True)], axis=1)
+df_final.to_csv('reverse.csv', index=False,mode='w')
 
 
 
