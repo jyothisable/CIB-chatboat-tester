@@ -43,29 +43,37 @@ time.sleep(5)
 shadow_root = driver.find_element(By.CSS_SELECTOR, '#shadow').shadow_root
 
 shadow_root.find_element(By.CSS_SELECTOR,'div.wrapper-container > button').click()
+time.sleep(2)
+
 
 # get the list of prompts from csv
 df = pd.read_csv('prompt.csv')
-prompts = df['Prompts'].tolist()
+df['Response_1'] = df['Prompts'].map(lambda x: get_response(x))
 
-prompt1 = prompts[0]
+def get_response(prompt):
+    # Find input prompt field
+    input_field = shadow_root.find_element(By.CSS_SELECTOR, 'div.chat-window > div.chat-footer > input')
+    input_field.send_keys(prompt)
 
-time.sleep(2)
-# Find input prompt field
-input_field = shadow_root.find_element(By.CSS_SELECTOR, 'div.chat-window > div.chat-footer > input')
-input_field.send_keys(prompt1)
+    time.sleep(2)
 
-time.sleep(2)
+    # Find send button
+    shadow_root.find_element(By.CSS_SELECTOR, 'div.chat-window > div.chat-footer > img.chat-send-button').click()
+    time.sleep(5)
 
-# Find send button
-shadow_root.find_element(By.CSS_SELECTOR, 'div.chat-window > div.chat-footer > img.chat-send-button').click()
-time.sleep(5)
-
-# Find the response
-response = shadow_root.find_element(By.CSS_SELECTOR, 'div.chat-window > div.chat-messages > div > div:last-child')
-print(response)
+    # Find the response
+    responses = shadow_root.find_elements(By.CSS_SELECTOR, 'div.chat-window > div.chat-messages > div > div:last-child > *')
+    res_list = []
+    for res in responses:
+        res_list.apend(res.text)
+    return res_list
 
 
+
+# suggestions = shadow_root.find_elements(By.CSS_SELECTOR, 'div.chat-window > div.chat-messages > div > div:last-child  > div.suggestion-chip *')
+
+# for sug in suggestions:
+#     print(sug.text)
 
 
 
